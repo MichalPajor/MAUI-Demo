@@ -3,6 +3,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using DemoGame.Models;
 using DemoGame.Popups;
 using Microsoft.Maui.Controls;
@@ -10,7 +12,7 @@ using Mopups.Interfaces;
 
 namespace DemoGame.ViewModels
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public partial class MainPageViewModel : ObservableObject
     {
 
         List<Word> words = new List<Word>
@@ -43,81 +45,38 @@ namespace DemoGame.ViewModels
         };
 
         IPopupNavigation popupNavigation;
-        public ICommand CharButtonClickedCommand { get; set; }
-        public ICommand RefreshCommand { get; set; }
 
-        public ICommand CheckResultCommand { get; set; }
+        [ObservableProperty]
+        string translatedWord;
 
+        [ObservableProperty]
+        string correctAnswer;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string name = "") =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        [ObservableProperty]
+        string resultWord;
 
+        [ObservableProperty]
+        ObservableCollection<ButtonCharHelper> charList;
 
-        private string _translatedWord;
-        public string TranslatedWord
+        [RelayCommand]
+        void Refresh()
         {
-            get => _translatedWord;
-            set
-            {
-                if (_translatedWord != value)
-                {
-                    _translatedWord = value;
-                    OnPropertyChanged(); // reports this property
-                }
-            }
+            RefreshRound();
+        }
+        [RelayCommand]
+        void CheckResult()
+        {
+            CheckAnswer();
+        }
+        [RelayCommand]
+        void CharButtonClicked(ButtonCharHelper btn)
+        {
+            Clicked(btn);
         }
 
-
-        private string _correctAnswer;
-        public string CorrectAnswer
-        {
-            get => _correctAnswer;
-            set
-            {
-                if (_correctAnswer != value)
-                {
-                    _correctAnswer = value;
-                    OnPropertyChanged(); // reports this property
-                }
-            }
-        }
-
-        private string _resultWord;
-        public string ResultWord
-        {
-            get => _resultWord;
-            set
-            {
-                if (_resultWord != value)
-                {
-                    _resultWord = value;
-                    OnPropertyChanged(); // reports this property
-                }
-            }
-        }
-
-        private ObservableCollection<ButtonCharHelper> _charList;
-        public ObservableCollection<ButtonCharHelper> CharList
-        {
-            get => _charList;
-            set
-            {
-                if (_charList != value)
-                {
-                    _charList = value;
-                    OnPropertyChanged(); // reports this property
-                }
-            }
-        }
-        private List<ButtonCharHelper> clickedChars = new List<ButtonCharHelper>();
         public MainPageViewModel(IPopupNavigation popupNavigation)
         {
             this.popupNavigation = popupNavigation;
-            CharButtonClickedCommand = new Command<ButtonCharHelper>(CharButtonClicked);
-            RefreshCommand = new Command(RefreshRound);
-            CheckResultCommand = new Command(CheckAnswer);
-
             LoadWords();
             CharList = new ObservableCollection<ButtonCharHelper>(randomizeChars(CorrectAnswer));
         }
@@ -161,7 +120,7 @@ namespace DemoGame.ViewModels
             CorrectAnswer = words[randomIndex].Translated.ToUpper();
         }
 
-        public void CharButtonClicked(ButtonCharHelper item)
+        public void Clicked(ButtonCharHelper item)
         {
             ResultWord += item.Value;
             CharList.Remove(item);

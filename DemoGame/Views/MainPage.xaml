@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoGame.MainPage"
              xmlns:local="clr-namespace:DemoGame"
+             xmlns:viewmodel="clr-namespace:DemoGame.ViewModels"
+             xmlns:btncharhelper="clr-namespace:DemoGame.Models"
+             x:DataType="viewmodel:MainPageViewModel"
              BackgroundColor="{StaticResource Gray900}">
 
 
@@ -64,7 +67,7 @@
                         Span="6" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="btncharhelper:ButtonCharHelper">
                             <Button Text="{Binding Value}" Margin="5" FontSize="16" WidthRequest="45" HeightRequest="45" Style="{StaticResource CharButton}"
                                     Command="{Binding BindingContext.CharButtonClickedCommand, Source={x:Reference mCollectionView}}" CommandParameter="{Binding .}"/>
                         </DataTemplate>
