@@ -1,4 +1,5 @@
 ﻿using DemoGame.ViewModels;
+using DemoGame.Views;
 using Microsoft.Extensions.Logging;
 using Mopups.Hosting;
 using Mopups.Interfaces;
@@ -31,9 +32,14 @@ namespace DemoGame
 		builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton<IPopupNavigation>(MopupService.Instance);
-            builder.Services.AddTransient<App>();
+
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainPageViewModel>();
+
+            builder.Services.AddTransient<GuessWordPage>();
+            builder.Services.AddTransient<GuessWordViewModel>();
+
+
             return builder.Build();
         }
     }

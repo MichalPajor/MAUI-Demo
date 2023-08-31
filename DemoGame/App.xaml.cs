@@ -1,19 +1,12 @@
-﻿using DemoGame.ViewModels;
-using Mopups.Interfaces;
-
-namespace DemoGame
+﻿namespace DemoGame
 {
     public partial class App : Application
     {
-        IPopupNavigation popupNavigation;
-        private MainPageViewModel mainVM;
-
-        public App(IPopupNavigation popupNavigation, MainPageViewModel mainVM)
+        public App()
         {
             InitializeComponent();
-            this.popupNavigation = popupNavigation;
-            this.mainVM = mainVM;
-            MainPage = new MainPage(this.mainVM);
+
+            MainPage = new AppShell();
         }
     }
 }

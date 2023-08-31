@@ -16,7 +16,7 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.demogame</ApplicationId>
-		<ApplicationIdGuid>583f2043-8012-4987-8260-cac240a6fca5</ApplicationIdGuid>
+		<ApplicationIdGuid>444770f3-e679-4e1c-925c-fe8e243dd3e1</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -49,28 +49,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Fonts\fontello.ttf" />
-	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
-	  <None Remove="Resources\Fonts\Roboto-Regular.ttf" />
-	  <None Remove="Resources\Fonts\SpaceGrotesk-Bold.ttf" />
-	  <None Remove="Resources\Fonts\SpaceGrotesk-Medium.ttf" />
-	  <None Remove="Resources\Fonts\SpaceGrotesk-Regular.ttf" />
-	  <None Remove="Resources\Fonts\SpaceGrotesk-SemiBold.ttf" />
-	  <None Remove="Resources\Images\check.svg" />
-	  <None Remove="Resources\Images\xmark.svg" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Mopups" Version="1.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Popups\FailPopup.xaml">
+	  <Compile Update="Views\GuessWordPage.xaml.cs">
+	    <DependentUpon>GuessWordPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Models\Popups\FailPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Popups\SuccessPopup.xaml">
+	  <MauiXaml Update="Models\Popups\SuccessPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\GuessWordPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
