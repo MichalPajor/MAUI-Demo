@@ -67,6 +67,7 @@
             FontSize="18"
             Text="Sprawdź"
             TextColor="White"   
+            Margin="20,0"
             Command="{Binding CheckResultCommand}"
             ></Button>
     </Grid>

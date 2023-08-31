@@ -11,8 +11,10 @@
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="Button" x:Key="CharButton">
-                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextColor" Value="White" />
+                <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+                <Setter Property="BorderWidth" Value="1" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

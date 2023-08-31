@@ -1,20 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DemoGame.MainPage">
+             x:Class="DemoGame.MainPage"
+             xmlns:menuitem="clr-namespace:DemoGame.Models"
+             BackgroundColor="{StaticResource Gray900}">
 
     <ScrollView>
-        <Button
-            BackgroundColor="{StaticResource Primary}"
-            CornerRadius="30"
-            HeightRequest="50"
-            FontAttributes="Bold"
-            FontFamily="RobotoR"
-            FontSize="18"
-            Text="Test"
-            TextColor="White"   
-            Command="{Binding GoNextCommand}"
-    ></Button>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <CollectionView ItemsSource="{Binding MenuItems}" x:Name="mCollectionView" >
+                <CollectionView.ItemsLayout >
+                    <GridItemsLayout Orientation="Vertical"
+                        Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="menuitem:MainMenuItem">
+                        <Frame Margin="5" HasShadow="True" BorderColor="{StaticResource Gray500}" BackgroundColor="{StaticResource Gray900}" CornerRadius="10" Padding="10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                            <StackLayout>
+                                <Image Source="{Binding BgImageSource}"  WidthRequest="100" HeightRequest="100">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.NavigationCommand, Source={x:Reference mCollectionView}}" CommandParameter="{Binding .}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Label Text="{Binding ItemTitle}" TextColor="White" WidthRequest="100" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
     </ScrollView>
 
 </ContentPage>
