@@ -39,6 +39,9 @@ namespace DemoGame
             builder.Services.AddTransient<GuessWordPage>();
             builder.Services.AddTransient<GuessWordViewModel>();
 
+            builder.Services.AddTransient<AssignWordsPage>();
+            builder.Services.AddTransient<AssignWordsViewModel>();
+
 
             return builder.Build();
         }

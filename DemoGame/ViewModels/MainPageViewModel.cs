@@ -25,7 +25,7 @@ namespace DemoGame.ViewModels
                     break;
                 default:
                     {
-
+                        await Shell.Current.GoToAsync(nameof(AssignWordsPage));
                     }
                     break;
             }
@@ -40,7 +40,7 @@ namespace DemoGame.ViewModels
             MenuItems = new ObservableCollection<MainMenuItem>()
             {
                 new MainMenuItem(){Id=0, ItemTitle="Stwórz słówko", BgImageSource="guess_word.svg"},
-                new MainMenuItem(){Id=1, ItemTitle="Item2", BgImageSource="guess_word.svg"},
+                new MainMenuItem(){Id=1, ItemTitle="Dopasuj słówka", BgImageSource="guess_word.svg"},
                 new MainMenuItem(){Id=2, ItemTitle="Item3", BgImageSource="guess_word.svg"},
                 new MainMenuItem(){Id=3, ItemTitle="Item4", BgImageSource="guess_word.svg"},
                 new MainMenuItem(){Id=4, ItemTitle="Item5", BgImageSource="guess_word.svg"},

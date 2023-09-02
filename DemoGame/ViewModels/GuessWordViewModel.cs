@@ -78,14 +78,14 @@ namespace DemoGame.ViewModels
         {
             this.popupNavigation = popupNavigation;
             LoadWords();
-            CharList = new ObservableCollection<ButtonCharHelper>(randomizeChars(CorrectAnswer));
+            randomizeChars(CorrectAnswer);
         }
 
         private async void CheckAnswer()
         {
             if (CorrectAnswer == ResultWord)
             {
-                var result = await ShowSuccessPopupAndWaitForConfirmationAsync();
+                var result = await PopupsManager.ShowSuccessPopupAndWaitForConfirmationAsync(popupNavigation);
                 if (result == "Ok")
                 {
                     PlayNext();
@@ -93,7 +93,7 @@ namespace DemoGame.ViewModels
             }
             else
             {
-                var result = await ShowFailPopupAndWaitForConfirmationAsync();
+                var result = await PopupsManager.ShowFailPopupAndWaitForConfirmationAsync(popupNavigation);
                 if (result == "Retry")
                 {
                     RefreshRound();
@@ -129,44 +129,12 @@ namespace DemoGame.ViewModels
         public void RefreshRound()
         {
             ResultWord = String.Empty;
-            CharList = new ObservableCollection<ButtonCharHelper>(randomizeChars(CorrectAnswer));
+            randomizeChars(CorrectAnswer);
         }
-
-        private async Task<string> ShowSuccessPopupAndWaitForConfirmationAsync()
+        
+        private async Task randomizeChars(string input)
         {
-            var tcs = new TaskCompletionSource<string>();
-
-            var successPopup = new SuccessPopup();
-            successPopup.ResultConfirmed += (sender, result) =>
-            {
-                tcs.TrySetResult(result); // Ustawienie rezultatu w TaskCompletionSource
-            };
-
-            await popupNavigation.PushAsync(successPopup);
-
-            var finalResult = await tcs.Task; // Oczekiwanie na wynik
-
-            return finalResult;
-        }
-        private async Task<string> ShowFailPopupAndWaitForConfirmationAsync()
-        {
-            var tcs = new TaskCompletionSource<string>();
-
-            var popup = new FailPopup();
-            popup.ResultConfirmed += (sender, result) =>
-            {
-                tcs.TrySetResult(result); // Ustawienie rezultatu w TaskCompletionSource
-            };
-
-            await popupNavigation.PushAsync(popup);
-
-            var finalResult = await tcs.Task; // Oczekiwanie na wynik
-
-            return finalResult;
-        }
-
-        private List<ButtonCharHelper> randomizeChars(string input)
-        {
+            await Task.Delay(1000);
             List<char> charList = input.ToCharArray().ToList();
             // Mieszanie listy charów w losowej kolejności
             Random random = new Random();
@@ -186,7 +154,7 @@ namespace DemoGame.ViewModels
                 btn.Index = i;
                 result.Add(btn);
             }
-            return result;
+            CharList = new ObservableCollection<ButtonCharHelper>(result);
         }
     }
 }

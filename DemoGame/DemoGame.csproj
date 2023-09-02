@@ -58,16 +58,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\AssignWordsPage.xaml.cs">
+	    <DependentUpon>AssignWordsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\GuessWordPage.xaml.cs">
 	    <DependentUpon>GuessWordPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Models\Popups\FailPopup.xaml">
+	  <MauiXaml Update="Popups\FailPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Models\Popups\SuccessPopup.xaml">
+	  <MauiXaml Update="Popups\SuccessPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AssignWordsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\GuessWordPage.xaml">

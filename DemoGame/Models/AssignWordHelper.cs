@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace DemoGame.Models
 {
-    public class Word
+    public class AssignWordHelper
     {
-        public int Id { get; set; }
-        public string Original { get; set; }
-        public string Translated { get; set; }
+        public int Row { get; set; }
+        public string Text { get; set; }
     }
 }

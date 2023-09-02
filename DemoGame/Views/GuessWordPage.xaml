@@ -10,14 +10,15 @@
 
 
     <Grid RowDefinitions=".1*,.1*,.20*,.50*,.15*">
-        
-        <Label    
-            FontFamily="SpaceB"
-            FontSize="25"
-            Text="{Binding TranslatedWord}"
-            HorizontalOptions="Center"
-            TextColor="{StaticResource Gray100}"/>
         <Grid Grid.Row="1" ColumnDefinitions=".1*,*,.1*" Margin="0,0,20,0">
+            <Label   
+                Grid.Column="1"  
+                FontFamily="SpaceB"
+                FontSize="25"
+                Text="{Binding TranslatedWord}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                TextColor="{StaticResource Gray100}"/>
             <Image Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center">
                 <Image.Source>
                     <FontImageSource 
