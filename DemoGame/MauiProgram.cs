@@ -1,4 +1,5 @@
-﻿using DemoGame.ViewModels;
+﻿using CommunityToolkit.Maui;
+using DemoGame.ViewModels;
 using DemoGame.Views;
 using Microsoft.Extensions.Logging;
 using Mopups.Hosting;
@@ -15,6 +16,7 @@ namespace DemoGame
             builder
                 .UseMauiApp<App>()
                 .ConfigureMopups()
+                .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -41,6 +43,9 @@ namespace DemoGame
 
             builder.Services.AddTransient<AssignWordsPage>();
             builder.Services.AddTransient<AssignWordsViewModel>();
+
+            builder.Services.AddTransient<MediaPage>();
+            builder.Services.AddTransient<MediaViewModel>();
 
 
             return builder.Build();

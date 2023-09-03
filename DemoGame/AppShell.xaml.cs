@@ -10,6 +10,7 @@ namespace DemoGame
 
             Routing.RegisterRoute(nameof(GuessWordPage), typeof(GuessWordPage));
             Routing.RegisterRoute(nameof(AssignWordsPage), typeof(AssignWordsPage));
+            Routing.RegisterRoute(nameof(MediaPage), typeof(MediaPage));
         }
     }
 }

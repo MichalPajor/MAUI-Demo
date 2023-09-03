@@ -23,6 +23,16 @@ namespace DemoGame.ViewModels
                         await Shell.Current.GoToAsync(nameof(GuessWordPage));
                     }
                     break;
+                case 1:
+                    {
+                        await Shell.Current.GoToAsync(nameof(AssignWordsPage));
+                    }
+                    break;
+                case 2:
+                    {
+                        await Shell.Current.GoToAsync(nameof(MediaPage));
+                    }
+                    break;
                 default:
                     {
                         await Shell.Current.GoToAsync(nameof(AssignWordsPage));
@@ -41,7 +51,7 @@ namespace DemoGame.ViewModels
             {
                 new MainMenuItem(){Id=0, ItemTitle="Stwórz słówko", BgImageSource="guess_word.svg"},
                 new MainMenuItem(){Id=1, ItemTitle="Dopasuj słówka", BgImageSource="guess_word.svg"},
-                new MainMenuItem(){Id=2, ItemTitle="Item3", BgImageSource="guess_word.svg"},
+                new MainMenuItem(){Id=2, ItemTitle="Media", BgImageSource="guess_word.svg"},
                 new MainMenuItem(){Id=3, ItemTitle="Item4", BgImageSource="guess_word.svg"},
                 new MainMenuItem(){Id=4, ItemTitle="Item5", BgImageSource="guess_word.svg"},
                 new MainMenuItem(){Id=5, ItemTitle="Item6", BgImageSource="guess_word.svg"},
